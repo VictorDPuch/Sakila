@@ -56,5 +56,32 @@ public class AccesoDatos extends Conexion{
            return null;
            }
     }
+     public void Insertar(int codigo, String Nombre) throws Exception
+    {
+           try{
+             getStmt();
+	     stmt.executeUpdate("INSERT INTO actor values (" + codigo + ", '" +Nombre+ "')");
+        }catch (Exception ex){
+           System.err.println("SQLException: " + ex.getMessage());
+        }
+    }
+   public void Actualizar(int codigo, String Nombre) throws Exception
+    {
+           try{
+             getStmt();
+	     stmt.executeUpdate("UPDATE actor set first_name='"+Nombre+ "' WHERE actor_id="+codigo);
+        }catch (Exception ex){
+           System.err.println("SQLException: " + ex.getMessage());
+        }
+    }
+    public void Eliminar(int codigo)throws Exception
+    {
+         try{
+             getStmt();
+	     stmt.executeUpdate("DELETE FROM actor WHERE actor_id=" + codigo);
+        } catch (Exception ex){
+           System.err.println("SQLException: " + ex.getMessage());
+        }
+    }
 
 }

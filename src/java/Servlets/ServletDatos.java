@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package Servlets;
 
 import java.io.IOException;
@@ -16,10 +11,6 @@ import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Cesar
- */
 public class ServletDatos extends HttpServlet {
    
     /** 
@@ -64,49 +55,70 @@ public class ServletDatos extends HttpServlet {
         PrintWriter out = response.getWriter();
          try {
             ResultSet res;
-            AccesoDatos calidad = new AccesoDatos();
+            AccesoDatos Actores = new AccesoDatos();
             int idactor = 0;
             String actnombre = "";
             String actapellido="";
+            String fecha="";
+            String boton="";
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Litado de Calidades</title>");
+            out.println("<title>Actores</title>");
             out.println(" <link href=Estilo.css rel=stylesheet type=text/css>");
             out.println("</head>");
             out.println("<body>");
             out.println("<table align=center width=289 border=1 class=datos_form>");
             out.println("<tr class=titulo_tabla><td colspan=2>LISTADO DE ACTORES </td></tr> ");
             out.println("<tr><td>ID</td><td>Nombre</td><td>Apellido</td></tr>");
-            res = calidad.Listado();
-            if ((request.getParameter("ID")=="")&&(request.getParameter("APELLIDO")!=""))
-                res=calidad.BuscarPorNombre(request.getParameter("APELLIDO"));
-            if ((request.getParameter("ID")!="")&&(request.getParameter("APELLIDO")==""))
-                res=calidad.BuscarExistente(Integer.parseInt(request.getParameter("ID")));
-            if ((request.getParameter("ID")=="")&&(request.getParameter("APELLIDO")==""))
-                  res = calidad.Listado();
+            
+            if(request.getParameter("ID")!="")
+                idactor=Integer.parseInt(request.getParameter("ID"));
+            if(request.getParameter("NOMBRE")!="")
+                actapellido=request.getParameter("NOMBRE");
+            boton=request.getParameter("Boton");
+            if (boton.equals("Agregar"))
+                Actores.Insertar(idactor,actapellido);
+             
+            if(boton.equals("Actualizar"))
+                Actores.Actualizar(idactor,actapellido);
+              
+            if(boton.equals("Eliminar"))
+                Actores.Eliminar(idactor);
+    
+            if(boton.equals("Listado"))
+            {
+                res = Actores.Listado();
+            if ((request.getParameter("ID")=="")&&(request.getParameter("NOMBRE")!=""))
+                        res=Actores.BuscarPorNombre(request.getParameter("NOMBRE"));
+            if ((request.getParameter("ID")!="")&&(request.getParameter("NOMBRE")==""))
+                        res=Actores.BuscarExistente(Integer.parseInt(request.getParameter("ID")));
+            if ((request.getParameter("ID")=="")&&(request.getParameter("NOMBRE")==""))
+                        res = Actores.Listado();
 
+             res = Actores.Listado();
             while (res.next()) {
                 idactor = res.getInt("actor_id");
                 actnombre = res.getString("first_name");
                 actapellido = res.getString("last_name");
-                out.println("<tr><td>" + idactor + "</td><td>" + actnombre + "</td><td>"+ actapellido + "</td></tr>");
+                fecha = res.getString("last_update");
+                out.println("<tr><td>" + idactor + "</td><td>" + actnombre + "</td><td>"+ actapellido + "</td><td>"+ fecha + "</td></tr>");
             }
+            }
+            
             out.println("</table>");
             out.println("</body>");
             out.println("</html>");
             out.close();
         } catch (Exception ex) {
+            
+            out.println("<title>error</title>");
             Logger.getLogger(ServletDatos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    /** 
-     * Returns a short description of the servlet.
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 
 }
