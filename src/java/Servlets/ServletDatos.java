@@ -98,8 +98,7 @@ public class ServletDatos extends HttpServlet {
                         res=Actores.BuscarExistente(Integer.parseInt(request.getParameter("ID")));
             if ((request.getParameter("ID")=="")&&(request.getParameter("NOMBRE")==""))
                         res = Actores.Listado();
-
-             res = Actores.Listado();
+            
             while (res.next()) {
                 idactor = res.getInt("actor_id");
                 actnombre = res.getString("first_name");
