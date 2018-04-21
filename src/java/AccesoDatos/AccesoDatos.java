@@ -6,6 +6,7 @@
 package AccesoDatos;
 
 import AccesoDatos.Conexion;
+import static java.lang.System.out;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,7 +18,7 @@ public class AccesoDatos extends Conexion{
 
     public AccesoDatos()
     {
-        Conectar();
+        Conectar();  
     }
 
     public ResultSet Listado()throws Exception

@@ -80,8 +80,10 @@ public class ServletDatos extends HttpServlet {
               if(request.getParameter("FECHA")!="")
                 fecha=request.getParameter("FECHA");
             boton=request.getParameter("Boton");
-            if (boton.equals("Agregar"))
+            if (boton.equals("Agregar")){
                 Actores.Insertar(idactor,actnombre,actapellido,fecha);
+                out.println("Agregado");
+            }
              
             if(boton.equals("Actualizar"))
                 Actores.Actualizar(idactor,actapellido);
@@ -115,6 +117,7 @@ public class ServletDatos extends HttpServlet {
         } catch (Exception ex) {
             
             out.println("<title>error</title>");
+            out.println("ERROR: " + ex.getMessage());
             Logger.getLogger(ServletDatos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
