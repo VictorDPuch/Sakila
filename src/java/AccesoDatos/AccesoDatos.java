@@ -74,11 +74,20 @@ public class AccesoDatos extends Conexion{
            System.err.println("SQLException: " + ex.getMessage());
         }
     }
-   public void Actualizar(int codigo, String Nombre) throws Exception
+   public void Actualizar(int codigo, String Nombre,String Apellido,String Fecha) throws Exception
     {
            try{
              getStmt();
-	     stmt.executeUpdate("UPDATE actor set first_name='"+Nombre+ "' WHERE actor_id="+codigo);
+             PreparedStatement pstmt = con.prepareStatement("UPDATE actor SET first_name= ?, last_name= ?, last_update= ? WHERE actor_id= ? ");
+             
+              pstmt.setString(1, Nombre);
+              pstmt.setString(2, Apellido);
+              pstmt.setString(3, Fecha);
+              pstmt.setInt(4, codigo);
+
+              pstmt.executeUpdate();
+	     //stmt.executeUpdate("UPDATE actor set first_name='"+Nombre+ "',last_name='"+Apellido+ "',last_update='"+Fecha+ "' WHERE actor_id="+codigo);
+             //  stmt.executeUpdate("UPDATE actor set last_name='"+Apellido+ "' WHERE actor_id="+codigo);
         }catch (Exception ex){
            System.err.println("SQLException: " + ex.getMessage());
         }

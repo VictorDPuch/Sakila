@@ -86,7 +86,7 @@ public class ServletDatos extends HttpServlet {
             }
              
             if(boton.equals("Actualizar"))
-                Actores.Actualizar(idactor,actapellido);
+                Actores.Actualizar(idactor,actnombre,actapellido,fecha);
               
             if(boton.equals("Eliminar"))
                 Actores.Eliminar(idactor);

@@ -16,7 +16,7 @@ public class Conexion {
          private String databaseName= "sakila";
          private String url = "jdbc:mysql://localhost:3306/" + databaseName;
          private String userName = "root";
-         private String password = "12345"; // Indica al controlador que debe utilizar un cursor de servidor, // lo que permite más de una instrucción activa // en una conexión. private final String selectMethod = "cursor";
+         private String password = "1234"; // Indica al controlador que debe utilizar un cursor de servidor, // lo que permite más de una instrucción activa // en una conexión. private final String selectMethod = "cursor";
          //private String selectMethod = "cursor";
          private String errString;
      // Constructor public Connect(){}
@@ -39,7 +39,7 @@ public class Conexion {
               stmt=con.createStatement();
               System.out.println("Conectado");
          }catch(Exception e){
-              out.println("<title>error conectando a la db</title>");
+             out.println("<title>error conectando a la db</title>");
              errString= "Error Mientras se conectaba a la Base de Datos";
              System.out.println(errString);
              System.exit(0);
