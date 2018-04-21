@@ -38,6 +38,7 @@
                 <td><input type ="submit" name="Boton" value="Actualizar" class="texto"></td>
                 <td><input type ="submit" name="Boton" value="Eliminar" class="texto"></td>
                 <td><input type ="submit" name="Boton" value="Listado" class="texto"></td>
+                <td><input class="btn__reset" type="reset" value="LIMPIAR"></td>
             </tr>
                
            </table>

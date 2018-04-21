@@ -56,11 +56,20 @@ public class AccesoDatos extends Conexion{
            return null;
            }
     }
-     public void Insertar(int codigo, String Nombre) throws Exception
+     public void Insertar(int codigo, String Nombre, String Apellido,String Fecha) throws Exception
     {
            try{
              getStmt();
-	     stmt.executeUpdate("INSERT INTO actor values (" + codigo + ", '" +Nombre+ "')");
+             //stmt.executeUpdate("INSERT INTO actor values (" +202+", '" +"juan"+ "''" +"perez"+ "''" +"12-12-12"+ "')");
+	     //stmt.executeUpdate("INSERT INTO actor values (" + codigo + ", '" +Nombre+ "''" +Apellido+ "''" +Fecha+ "')");
+             PreparedStatement pstmt = con.prepareStatement("INSERT INTO actor VALUES(?, ?, ?,?)");
+
+              pstmt.setInt(1, codigo);
+              pstmt.setString(2, Nombre);
+              pstmt.setString(3, Apellido);
+              pstmt.setString(4, Fecha);
+
+int i = pstmt.executeUpdate();
         }catch (Exception ex){
            System.err.println("SQLException: " + ex.getMessage());
         }

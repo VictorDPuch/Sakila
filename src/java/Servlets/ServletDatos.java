@@ -74,10 +74,14 @@ public class ServletDatos extends HttpServlet {
             if(request.getParameter("ID")!="")
                 idactor=Integer.parseInt(request.getParameter("ID"));
             if(request.getParameter("NOMBRE")!="")
-                actapellido=request.getParameter("NOMBRE");
+                actnombre=request.getParameter("NOMBRE");
+             if(request.getParameter("APELLIDO")!="")
+                actapellido=request.getParameter("APELLIDO");
+              if(request.getParameter("FECHA")!="")
+                fecha=request.getParameter("FECHA");
             boton=request.getParameter("Boton");
             if (boton.equals("Agregar"))
-                Actores.Insertar(idactor,actapellido);
+                Actores.Insertar(idactor,actnombre,actapellido,fecha);
              
             if(boton.equals("Actualizar"))
                 Actores.Actualizar(idactor,actapellido);
