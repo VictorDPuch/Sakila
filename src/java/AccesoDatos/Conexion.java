@@ -6,11 +6,13 @@
 package AccesoDatos;
 import static java.lang.System.out;
 import java.sql.*;
+import javax.swing.JOptionPane;
 
 
 public class Conexion {
          protected Connection con;
          protected Statement stmt;
+         ResultSet rs = null;
          private String serverName= "localhost";
          private String portNumber = "3306";
          private String databaseName= "sakila";
@@ -18,6 +20,7 @@ public class Conexion {
          private String userName = "root";
          private String password = "1234"; // Indica al controlador que debe utilizar un cursor de servidor, // lo que permite más de una instrucción activa // en una conexión. private final String selectMethod = "cursor";
          //private String selectMethod = "cursor";
+         
          private String errString;
      // Constructor public Connect(){}
 
@@ -63,6 +66,14 @@ public class Conexion {
        {
           return this.stmt;
        }
-
+       public ResultSet getDatos(String com){
+        try {
+            this.Conectar();
+            rs = stmt.executeQuery(com);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Error: "+e);
+        }
+        return rs;
+    }
 
 }

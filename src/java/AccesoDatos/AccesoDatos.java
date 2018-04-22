@@ -11,6 +11,7 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 public class AccesoDatos extends Conexion{
     private int calcodigo;
     private String calnombre;
@@ -101,5 +102,11 @@ public class AccesoDatos extends Conexion{
            System.err.println("SQLException: " + ex.getMessage());
         }
     }
+     public ResultSet mostrar(){
+       Conexion con = new  Conexion();
+       String com = "Select actor_id, first_name from actor";
+       ResultSet rs = con.getDatos(com);
+       return rs;
+   }
 
 }

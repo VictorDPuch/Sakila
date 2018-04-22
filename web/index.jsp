@@ -1,3 +1,4 @@
+<%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -46,6 +47,23 @@
             </tr>
                
            </table>
+           <jsp:useBean id="cn" class="AccesoDatos.AccesoDatos" scope="page"></jsp:useBean>
+        <%
+        ResultSet rs = cn.mostrar();
+        %>
+        
+        <select>
+            <option>Escoge una opcion</option>
+            <%
+            while(rs.next()){
+                
+            
+            %>
+            <option value="<%=rs.getString("actor_id")%>"><%=rs.getString("first_name")%></option>
+            <%
+            }
+            %>
+        </select>
        </body>
       </form>
 </html>
