@@ -26,7 +26,11 @@
             </tr> 
              <tr>
                 <td>Fecha</td>
-                <td><input type ="text" name="FECHA" class="texto"></td>
+                <td>
+                 <input type="date" name="FECHA" step="1" min="1900-01-01" max="2040-12-31" value="<?php echo date("Y-m-d");">
+                </td>
+                
+                
             </tr> 
             
 

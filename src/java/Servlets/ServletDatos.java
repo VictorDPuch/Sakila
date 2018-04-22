@@ -83,13 +83,18 @@ public class ServletDatos extends HttpServlet {
             if (boton.equals("Agregar")){
                 Actores.Insertar(idactor,actnombre,actapellido,fecha);
                 out.println("Agregado");
+                return;
             }
              
-            if(boton.equals("Actualizar"))
+            if(boton.equals("Actualizar")){
                 Actores.Actualizar(idactor,actnombre,actapellido,fecha);
+                return;
+            }
               
-            if(boton.equals("Eliminar"))
+            if(boton.equals("Eliminar")){
                 Actores.Eliminar(idactor);
+                return;
+            }
     
             if(boton.equals("Listado"))
             {
