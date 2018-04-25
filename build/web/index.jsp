@@ -17,8 +17,13 @@
     <body>
         <h1>Pagina Principal</h1>
         <a href="Registro.jsp">Registrar</a>
+        <br>
+        <br>
+        <br>
         <a href="Buscar.jsp">Buscar</a>
+        <br>
          <form method="post" action="ServletDatos">
+             <br>
          <input type ="submit" class="btn__lista" name="Boton" value="Listado" class="texto">
         </form>
     </body>

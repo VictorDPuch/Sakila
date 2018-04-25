@@ -150,7 +150,10 @@ public class ServletDatos extends HttpServlet {
             }
     
             if(boton.equals("Buscar"))
-            {
+                
+            { 
+                out.println(" <div class=\"container\">");
+               
                  out.println("<table align=center width=289 border=1 class=datos_form>");
                  out.println("<tr class=titulo_tabla><td colspan=2>LISTADO DE ACTORES </td></tr> ");
                  out.println("<tr><td>ID</td><td>Nombre</td><td>Apellido</td></tr>");
@@ -175,6 +178,7 @@ public class ServletDatos extends HttpServlet {
              
             }
                      out.println("</table>");
+                     out.println("</div>");
                      out.println("</body>");
                      out.println("</html>");
                      out.close();
@@ -185,6 +189,7 @@ public class ServletDatos extends HttpServlet {
             
             if(boton.equals("Listado"))
             {
+                out.println(" <div class=\"container\">");
                  out.println("<table align=center width=289 border=1 class=datos_form>");
                  out.println("<tr class=titulo_tabla><td colspan=2>LISTADO DE ACTORES </td></tr> ");
                  out.println("<tr><td>ID</td><td>Nombre</td><td>Apellido</td></tr>");
@@ -200,6 +205,7 @@ public class ServletDatos extends HttpServlet {
               
             }
            out.println("</table>");
+           out.println("</div>");
             out.println("</body>");
             out.println("</html>");
             out.close();

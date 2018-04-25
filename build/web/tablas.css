@@ -50,15 +50,18 @@ input[type="date"] {
 	color:#fff;
 	border-radius: 20px;
 }
-.container ,table,td,tr{
-    color:#fff;
+.container{
+        color:#fff;
 	max-width: 450px;
 	height: auto;
 	background-color: #EFEFEF;
 	background: rgba(0,0,0,0.5);
 	margin: 5% auto;
 	padding-bottom: 1rem;
-border-radius: 20px;
+
+}
+tr,td{
+   color:#fff; 
 }
 
 .form__top {
@@ -92,7 +95,7 @@ h2 span {
 	margin-top: 1rem;
 }
 
-.input, .btn__submit, .btn__reset{
+.input, .btn__submit, .btn__lista{
   background:transparent;
 	padding: .5rem;
 	margin: .5rem 0;
@@ -107,11 +110,13 @@ h2 span {
 	border-bottom: solid #F39B53 .2rem;
 }
 
-.btn__submit, .btn__reset {
+.btn__submit, .btn__lista {
 	width: 40%;
 	border-bottom: none;
 	background-color: #31B1E5;
 	color: white;
+         padding: 14px 25px;
+         display: inline-block;
 }
 
 .btn__lista {
@@ -124,4 +129,17 @@ h2 span {
 
 .btn__lista:hover{
 	background-color: #FA9535;
+}
+a:link, a:visited {
+    background-color: #f44336;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+
+a:hover, a:active {
+    background-color: red;
 }
