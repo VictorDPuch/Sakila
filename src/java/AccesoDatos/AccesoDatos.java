@@ -26,7 +26,7 @@ public class AccesoDatos extends Conexion{
     {
             try{
              getStmt();
-	     resultado= stmt.executeQuery("SELECT * FROM actor");
+	     resultado= stmt.executeQuery("SELECT * from Member");
              return resultado;
               } catch (Exception ex){
            System.err.println("SQLException: " + ex.getMessage());
@@ -58,21 +58,35 @@ public class AccesoDatos extends Conexion{
            return null;
            }
     }
-     public void Insertar(int codigo, String Nombre, String Apellido,String Fecha) throws Exception
+     public void Insertar(String name, String firstlastname,String secondlastname
+             ,String email,String phone,int  address,String birthday,
+             int gender,int civilstatus,int membertype, boolean baptized,int status) throws Exception
     {
            try{
              getStmt();
-             PreparedStatement pstmt = con.prepareStatement("INSERT INTO actor VALUES(?, ?, ?,?)");
+             PreparedStatement pstmt = con.prepareStatement("INSERT INTO Member VALUES(0,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-              pstmt.setInt(1, codigo);
-              pstmt.setString(2, Nombre);
-              pstmt.setString(3, Apellido);
-              pstmt.setString(4, Fecha);
+              //pstmt.setInt(1, codigo);
+              pstmt.setString(1, name);
+              pstmt.setString(2, firstlastname);
+              pstmt.setString(3, secondlastname);
+              pstmt.setString(4, email);
+              pstmt.setString(5, phone);
+              pstmt.setInt(6, address);
+              pstmt.setString(7, birthday);
+              pstmt.setInt(8, gender);
+              pstmt.setInt(9, civilstatus);
+              pstmt.setInt(10, membertype);
+              pstmt.setBoolean(11, baptized);
+              pstmt.setInt(12, status);
+              
+              
 
               pstmt.executeUpdate();
               
         }catch (Exception ex){
            System.err.println("SQLException: " + ex.getMessage());
+           System.exit(0);
         }
     }
    public void Actualizar(int codigo, String Nombre,String Apellido,String Fecha) throws Exception
@@ -87,8 +101,7 @@ public class AccesoDatos extends Conexion{
               pstmt.setInt(4, codigo);
 
               pstmt.executeUpdate();
-	     //stmt.executeUpdate("UPDATE actor set first_name='"+Nombre+ "',last_name='"+Apellido+ "',last_update='"+Fecha+ "' WHERE actor_id="+codigo);
-             //  stmt.executeUpdate("UPDATE actor set last_name='"+Apellido+ "' WHERE actor_id="+codigo);
+              
         }catch (Exception ex){
            System.err.println("SQLException: " + ex.getMessage());
         }
@@ -104,7 +117,7 @@ public class AccesoDatos extends Conexion{
     }
      public ResultSet mostrar(){
        Conexion con = new  Conexion();
-       String com = "Select actor_id, first_name from actor";
+       String com = "Select idMember, name from Member";
        ResultSet rs = con.getDatos(com);
        return rs;
    }

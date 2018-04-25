@@ -15,7 +15,7 @@ public class Conexion {
          ResultSet rs = null;
          private String serverName= "localhost";
          private String portNumber = "3306";
-         private String databaseName= "sakila";
+         private String databaseName= "CDG_DB";
          private String url = "jdbc:mysql://localhost:3306/" + databaseName;
          private String userName = "root";
          private String password = "1234"; // Indica al controlador que debe utilizar un cursor de servidor, // lo que permite más de una instrucción activa // en una conexión. private final String selectMethod = "cursor";
@@ -71,7 +71,7 @@ public class Conexion {
             this.Conectar();
             rs = stmt.executeQuery(com);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,"Error: "+e);
+            JOptionPane.showMessageDialog(null,"Error GETTING DATA: "+e);
         }
         return rs;
     }

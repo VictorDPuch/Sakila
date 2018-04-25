@@ -55,64 +55,122 @@ public class ServletDatos extends HttpServlet {
         PrintWriter out = response.getWriter();
          try {
             ResultSet res;
-            AccesoDatos Actores = new AccesoDatos();
+            AccesoDatos Members = new AccesoDatos();
             int idactor = 0;
-            String actnombre = "";
-            String actapellido="";
-            String fecha="";
+            String name = "";
+            String firstlastname="";
+            String secondlastname="";
+            String email="";
+            String phone="";
+            int idaddress = 0;
+            String birthday="2012-12-12";
             String boton="";
+            int idgender = 0;
+            int idcivilstatus = 0;
+            int membertype = 0;
+            boolean baptized=false;
+            int idstatus=1;
+            
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Actores</title>");
-            out.println(" <link href=Estilo.css rel=stylesheet type=text/css>");
+            //out.println(" <link href=main.css rel=stylesheet type=text/css>");
+            out.println("<meta charset=\"UTF-8\">");
+            out.println("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">");
+            out.println("<link rel=\"stylesheet\" href=\"reset.css\">");
+            out.println("<link href=\"https://fonts.googleapis.com/css?family=Lato:400,900\" rel=\"stylesheet\">");
+            out.println("<link rel=\"stylesheet\" href=\"tablas.css\">"); 
+	
             out.println("</head>");
             out.println("<body>");
             out.println("<table align=center width=289 border=1 class=datos_form>");
             out.println("<tr class=titulo_tabla><td colspan=2>LISTADO DE ACTORES </td></tr> ");
             out.println("<tr><td>ID</td><td>Nombre</td><td>Apellido</td></tr>");
             
-            if(request.getParameter("ID")!="")
-                idactor=Integer.parseInt(request.getParameter("ID"));
-            if(request.getParameter("NOMBRE")!="")
-                actnombre=request.getParameter("NOMBRE");
-             if(request.getParameter("APELLIDO")!="")
-                actapellido=request.getParameter("APELLIDO");
-              if(request.getParameter("FECHA")!="")
-                fecha=request.getParameter("FECHA");
+            //if(request.getParameter("ID")!="")
+              //  idactor=Integer.parseInt(request.getParameter("ID"));
+          
             boton=request.getParameter("Boton");
             if (boton.equals("Agregar")){
-                Actores.Insertar(idactor,actnombre,actapellido,fecha);
+                
+            if(request.getParameter("NOMBRE")!=""){
+                name=request.getParameter("NOMBRE");
+           }
+            
+            if(request.getParameter("APELLIDOPATERNO")!=""){
+                firstlastname=request.getParameter("APELLIDOPATERNO");
+            }
+            
+            if(request.getParameter("APELLIDOMATERNO")!=""){
+                secondlastname=request.getParameter("APELLIDOMATERNO");
+            }
+             
+            if(request.getParameter("CUMPLEANIOS")!=""){
+                birthday=request.getParameter("CUMPLEANIOS");
+            }
+            
+            if(request.getParameter("EMAIL")!=""){
+                email=request.getParameter("EMAIL");
+            }
+            
+            if(request.getParameter("TELEFONO")!=""){
+                phone=request.getParameter("TELEFONO");
+            }
+            
+            if(request.getParameter("DIRECCION")!=""){
+                idaddress=Integer.parseInt(request.getParameter("DIRECCION"));
+            }
+            
+            if(request.getParameter("GENERO")!=""){
+                idgender=Integer.parseInt(request.getParameter("GENERO"));
+            }
+            
+            if(request.getParameter("ESTADOCIVIL")!=""){
+                idcivilstatus=Integer.parseInt(request.getParameter("ESTADOCIVIL"));
+            }
+            
+            if(request.getParameter("TIPOMIEMBRO")!=""){
+                membertype=Integer.parseInt(request.getParameter("TIPOMIEMBRO"));
+            }
+            
+            if(request.getParameter("BAUTIZADO")!=""){
+                baptized=Boolean.parseBoolean(request.getParameter("BAUTIZADO"));
+                
+            }
+            //out.println("<tr><td>" + name + "</td><td>"+ firstlastname + "</td><td>"+ secondlastname + "</td><td>"+ email + "</td><td>"+ phone + "</td><td>"+idaddress+ "</td><td>"+ birthday + "</td><td>"+idgender + "</td><td>"+ idcivilstatus + "</td><td>"+ membertype + "</td><td>"+ baptized + "</td></tr>");         
+              
+                Members.Insertar(name,firstlastname,secondlastname,email,phone,idaddress,birthday,idgender,idcivilstatus,membertype,baptized,1);
                 out.println("Agregado");
+                out.println("<br/><a href=\"index.jsp\">Regresar</a>");
                 return;
             }
              
             if(boton.equals("Actualizar")){
-                Actores.Actualizar(idactor,actnombre,actapellido,fecha);
+                Members.Actualizar(idactor,name,firstlastname,birthday);
                 return;
             }
               
             if(boton.equals("Eliminar")){
-                Actores.Eliminar(idactor);
+                Members.Eliminar(idactor);
                 return;
             }
     
             if(boton.equals("Listado"))
             {
-                res = Actores.Listado();
-            if ((request.getParameter("ID")=="")&&(request.getParameter("NOMBRE")!=""))
-                        res=Actores.BuscarPorNombre(request.getParameter("NOMBRE"));
-            if ((request.getParameter("ID")!="")&&(request.getParameter("NOMBRE")==""))
-                        res=Actores.BuscarExistente(Integer.parseInt(request.getParameter("ID")));
-            if ((request.getParameter("ID")=="")&&(request.getParameter("NOMBRE")==""))
-                        res = Actores.Listado();
-            
-            while (res.next()) {
-                idactor = res.getInt("actor_id");
-                actnombre = res.getString("first_name");
-                actapellido = res.getString("last_name");
-                fecha = res.getString("last_update");
-                out.println("<tr><td>" + idactor + "</td><td>" + actnombre + "</td><td>"+ actapellido + "</td><td>"+ fecha + "</td></tr>");
+                try{
+                res = Members.Listado();
+                 while (res.next()) {
+                //idactor = res.getInt("actor_id");
+                name = res.getString("name");
+                firstlastname = res.getString("firstLastName");
+                birthday = res.getString("birthday");
+                out.println("<tr><td>" + name + "</td><td>"+ firstlastname + "</td><td>"+ birthday + "</td></tr>");
             }
+                }catch (Exception ex){
+                    out.println("ERROR: NO FUE LISTAR" + ex.getMessage());
+                }
+     
+           
             }
             
             out.println("</table>");
