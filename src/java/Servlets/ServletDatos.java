@@ -73,22 +73,16 @@ public class ServletDatos extends HttpServlet {
             
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Actores</title>");
+            out.println("<title>Miembros</title>");
             //out.println(" <link href=main.css rel=stylesheet type=text/css>");
             out.println("<meta charset=\"UTF-8\">");
             out.println("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">");
             out.println("<link rel=\"stylesheet\" href=\"reset.css\">");
             out.println("<link href=\"https://fonts.googleapis.com/css?family=Lato:400,900\" rel=\"stylesheet\">");
-            out.println("<link rel=\"stylesheet\" href=\"tablas.css\">"); 
-	
+            out.println("<link rel=\"stylesheet\" href=\"tablas.css\">"); 	
             out.println("</head>");
             out.println("<body>");
-            out.println("<table align=center width=289 border=1 class=datos_form>");
-            out.println("<tr class=titulo_tabla><td colspan=2>LISTADO DE ACTORES </td></tr> ");
-            out.println("<tr><td>ID</td><td>Nombre</td><td>Apellido</td></tr>");
-            
-            //if(request.getParameter("ID")!="")
-              //  idactor=Integer.parseInt(request.getParameter("ID"));
+          
           
             boton=request.getParameter("Boton");
             if (boton.equals("Agregar")){
@@ -155,8 +149,46 @@ public class ServletDatos extends HttpServlet {
                 return;
             }
     
+            if(boton.equals("Buscar"))
+            {
+                 out.println("<table align=center width=289 border=1 class=datos_form>");
+                 out.println("<tr class=titulo_tabla><td colspan=2>LISTADO DE ACTORES </td></tr> ");
+                 out.println("<tr><td>ID</td><td>Nombre</td><td>Apellido</td></tr>");
+            
+                if(request.getParameter("NOMBRE")!=""){
+                name=request.getParameter("NOMBRE");
+           }
+            
+                if(request.getParameter("APELLIDOPATERNO")!=""){
+                firstlastname=request.getParameter("APELLIDOPATERNO");
+               
+                }
+                
+               try{
+                  res = Members.BuscarExistente(name, firstlastname);
+                 while (res.next()) {
+                //idactor = res.getInt("actor_id");
+                name = res.getString("name");
+                firstlastname = res.getString("firstLastName");
+                birthday = res.getString("birthday");
+                out.println("<tr><td>" + name + "</td><td>"+ firstlastname + "</td><td>"+ birthday + "</td></tr>");
+             
+            }
+                     out.println("</table>");
+                     out.println("</body>");
+                     out.println("</html>");
+                     out.close();
+                }catch (Exception ex){
+                    out.println("ERROR: NO FUE LISTAR" + ex.getMessage());
+                }
+            }
+            
             if(boton.equals("Listado"))
             {
+                 out.println("<table align=center width=289 border=1 class=datos_form>");
+                 out.println("<tr class=titulo_tabla><td colspan=2>LISTADO DE ACTORES </td></tr> ");
+                 out.println("<tr><td>ID</td><td>Nombre</td><td>Apellido</td></tr>");
+            
                 try{
                 res = Members.Listado();
                  while (res.next()) {
@@ -165,7 +197,13 @@ public class ServletDatos extends HttpServlet {
                 firstlastname = res.getString("firstLastName");
                 birthday = res.getString("birthday");
                 out.println("<tr><td>" + name + "</td><td>"+ firstlastname + "</td><td>"+ birthday + "</td></tr>");
+              
             }
+           out.println("</table>");
+            out.println("</body>");
+            out.println("</html>");
+            out.close();
+                 return;
                 }catch (Exception ex){
                     out.println("ERROR: NO FUE LISTAR" + ex.getMessage());
                 }
@@ -173,10 +211,7 @@ public class ServletDatos extends HttpServlet {
            
             }
             
-            out.println("</table>");
-            out.println("</body>");
-            out.println("</html>");
-            out.close();
+          
         } catch (Exception ex) {
             
             out.println("<title>error</title>");

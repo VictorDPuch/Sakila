@@ -50,14 +50,15 @@ input[type="date"] {
 	color:#fff;
 	border-radius: 20px;
 }
-.container {
+.container ,table,td,tr{
+    color:#fff;
 	max-width: 450px;
 	height: auto;
 	background-color: #EFEFEF;
 	background: rgba(0,0,0,0.5);
 	margin: 5% auto;
 	padding-bottom: 1rem;
-
+border-radius: 20px;
 }
 
 .form__top {
@@ -113,7 +114,7 @@ h2 span {
 	color: white;
 }
 
-.btn__reset {
+.btn__lista {
 	background-color: #EDA135;
 }
 
@@ -121,6 +122,6 @@ h2 span {
 	background-color: #4C9ED9;
 }
 
-.btn__reset:hover{
+.btn__lista:hover{
 	background-color: #FA9535;
 }

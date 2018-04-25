@@ -3,11 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/victor-puch/NetBeansProjects/Sakila/web/index2.jsp</file>
-            <file>file:/home/victor-puch/NetBeansProjects/Sakila/src/java/AccesoDatos/AccesoDatos.java</file>
-            <file>file:/home/victor-puch/NetBeansProjects/Sakila/src/java/AccesoDatos/Conexion.java</file>
+            <file>file:/home/victor-puch/NetBeansProjects/Sakila/web/tablas.css</file>
+            <file>file:/home/victor-puch/NetBeansProjects/Sakila/web/Buscar.jsp</file>
+            <file>file:/home/victor-puch/NetBeansProjects/Sakila/web/Registro.jsp</file>
             <file>file:/home/victor-puch/NetBeansProjects/Sakila/src/java/Servlets/ServletDatos.java</file>
             <file>file:/home/victor-puch/NetBeansProjects/Sakila/web/index.jsp</file>
+            <file>file:/home/victor-puch/NetBeansProjects/Sakila/web/main.css</file>
         </group>
     </open-files>
 </project-private>

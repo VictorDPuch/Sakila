@@ -35,10 +35,11 @@ public class AccesoDatos extends Conexion{
     }
 
    
-    public ResultSet BuscarExistente(int Codigo) throws Exception
+    public ResultSet BuscarExistente(String name, String firstlastname) throws Exception
     {   try{
              getStmt();
-	     resultado= stmt.executeQuery("SELECT * FROM actor WHERE actor_id LIKE'" + Codigo+"%'");
+	      resultado= stmt.executeQuery
+        ("SELECT * FROM Member WHERE (name LIKE '" + name + "%' AND firstLastName LIKE '" +firstlastname+ "%' )");
                return resultado;
              } catch (Exception ex){
            System.err.println("SQLException: " + ex.getMessage());
