@@ -155,7 +155,7 @@ public class ServletDatos extends HttpServlet {
                 out.println(" <div class=\"container\">");
                
                  out.println("<table align=center width=289 border=1 class=datos_form>");
-                 out.println("<tr class=titulo_tabla><td colspan=2>LISTADO DE ACTORES </td></tr> ");
+                 out.println("<tr class=titulo_tabla><td colspan=2>LISTADO DE MIEMBROS </td></tr> ");
                  out.println("<tr><td>ID</td><td>Nombre</td><td>Apellido</td></tr>");
             
                 if(request.getParameter("NOMBRE")!=""){
@@ -191,13 +191,12 @@ public class ServletDatos extends HttpServlet {
             {
                 out.println(" <div class=\"container\">");
                  out.println("<table align=center width=289 border=1 class=datos_form>");
-                 out.println("<tr class=titulo_tabla><td colspan=2>LISTADO DE ACTORES </td></tr> ");
+                 out.println("<tr class=titulo_tabla><td colspan=2>LISTADO DE MIEMBROS </td></tr> ");
                  out.println("<tr><td>ID</td><td>Nombre</td><td>Apellido</td></tr>");
             
                 try{
                 res = Members.Listado();
                  while (res.next()) {
-                //idactor = res.getInt("actor_id");
                 name = res.getString("name");
                 firstlastname = res.getString("firstLastName");
                 birthday = res.getString("birthday");

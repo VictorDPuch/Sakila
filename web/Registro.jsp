@@ -11,13 +11,25 @@
 </head>
 
 <body>
-
+    
+<script>
+enviando = false;
+function checkSubmit() {
+    if (!enviando) {
+        enviando= true;
+        return true;
+    } else {
+        alert("El formulario ya se esta enviando");
+        return false;
+    }
+}
+</script>
 	<div class="container">
 		<div class="form__top">
 			<h2><span>Registro</span></h2>
 		</div>
 		<form class="form__reg"
-                    method="post" action="ServletDatos">
+                    method="post" action="ServletDatos" onsubmit="return checkSubmit();" >
 			<input class="input" type="text" name="NOMBRE" placeholder="&#128100;  Nombre(s)" required autofocus>
 			<input class="input" type="text" name="APELLIDOPATERNO" placeholder="&#128100;  Apellido Paterno" required>
 			<input class="input" type="text" name="APELLIDOMATERNO" placeholder="&#128100;  Apellido Materno" required>
@@ -34,8 +46,9 @@
 					<div class="grid-item">
 <select name="GENERO">
    <option selected value="0">Genero</option>
-       <option value="1">Hombre</option>
        <option value="2">Mujer</option>
+       <option value="1">Hombre</option>
+     
 </select>
 	</div>
 			<br/>

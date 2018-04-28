@@ -63,6 +63,7 @@ public class AccesoDatos extends Conexion{
              ,String email,String phone,int  address,String birthday,
              int gender,int civilstatus,int membertype, boolean baptized,int status) throws Exception
     {
+  
            try{
              getStmt();
              PreparedStatement pstmt = con.prepareStatement("INSERT INTO Member VALUES(0,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
@@ -84,7 +85,8 @@ public class AccesoDatos extends Conexion{
               
 
               pstmt.executeUpdate();
-              
+               con.setAutoCommit(true);
+
         }catch (Exception ex){
            System.err.println("SQLException: " + ex.getMessage());
            System.exit(0);
